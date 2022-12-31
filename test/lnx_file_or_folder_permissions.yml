@@ -1,0 +1,20 @@
+title: File or Folder Permissions Change
+status: experimental
+description: Detects file and folder permission changes
+author: Jakob Weinzettl, oscd.community
+date: 2019/09/23
+references:
+  - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1222.002/T1222.002.yaml
+logsource:
+  product: linux
+detection:
+  selection:
+    argv:
+      - '*chmod*'
+      - '*chown*'
+  condition: selection
+falsepositives:
+  - User interacting with files permissions (normal/daily behaviour)
+level: low
+tags:
+  - attack.defense_evasion

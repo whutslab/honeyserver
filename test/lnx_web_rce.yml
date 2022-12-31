@@ -1,0 +1,22 @@
+title: Webshell Remote Command Execution
+status: experimental
+description: Detects possible command execution by web application/web shell
+author: Ilyas Ochkov, Beyu Denis, oscd.community
+date: 2019/10/12
+modified: 2019/11/04
+references:
+  - personal experience
+
+logsource:
+  product: linux
+detection:
+  selection:
+    argv:
+      - '*detect_execve_www*'
+  condition: selection
+falsepositives:
+  - Admin activity
+  - Crazy web applications
+level: critical
+tags:
+  - attack.persistence

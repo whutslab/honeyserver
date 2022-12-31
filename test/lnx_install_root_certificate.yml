@@ -1,0 +1,19 @@
+title: Install Root Certificate
+description: Detects installed new certificate
+author: Ömer Günal, oscd.community
+references:
+  - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1553.004/T1553.004.md
+date: 2020/10/05
+detection:
+  keywords:
+    - 'update-ca-certificates'
+    - 'update-ca-trust'
+  condition: keywords
+falsepositives:
+  - Legitimate administration activities
+logsource:
+  product: linux
+  category: process_creation
+level: low
+tags:
+  - attack.defense_evasion

@@ -1,0 +1,22 @@
+title: File Deletion
+id: 30aed7b6-d2c1-4eaf-9382-b6bc43e50c57
+status: stable
+description: Detects file or directory create command
+author: Omer Gunal, oscd.community
+date: 2020/10/07
+references:
+  - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1070.004/T1070.004.md
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  selection:
+    comm:
+      - 'touch'
+      - 'mkdir'
+  condition: selection
+falsepositives:
+  - Legitimate administration activities
+level: informational
+tags:
+  - attack.execution

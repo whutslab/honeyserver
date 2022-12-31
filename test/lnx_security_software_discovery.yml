@@ -1,0 +1,30 @@
+title: Security Software Discovery
+status: experimental
+description: Detects usage of system utilities (only grep for now) to discover security software discovery
+author: Daniil Yugoslavskiy, oscd.community
+date: 2020/10/19
+references:
+  - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1518.001/T1518.001.md
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection1:
+    argv:
+      - '*grep*'
+  selection2:
+    argv:
+      - '*nessusd*'        # nessus vulnerability scanner
+      - '*td-agent*'       # fluentd log shipper
+      - '*packetbeat*'     # elastic network logger/shipper
+      - '*filebeat*'       # elastic log file shipper
+      - '*auditbeat*'      # elastic auditing agent/log shipper
+      - '*osqueryd*'       # facebook osquery
+      - '*cbagentd*'       # carbon black
+      - '*falcond*'        # crowdstrike falcon
+  condition: selection1 and selection2
+falsepositives:
+  - Legitimate activities
+level: low
+tags:
+  - attack.discovery

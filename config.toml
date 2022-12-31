@@ -1,0 +1,8 @@
+[dir]
+directory = ["./test"]
+[elasticsearch]
+url = ["http://192.168.137.65:9200/"]
+[mongo]
+url = "192.168.137.65:27017/"
+[containerid]
+nodename = ["a8013cb26691"]

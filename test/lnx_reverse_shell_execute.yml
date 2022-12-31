@@ -1,0 +1,22 @@
+title: Reverse Shell execute
+status: stable
+description: Detects reverse shell behaviour by existing php files
+author: Omer Gunal, oscd.community
+date: 2020/10/07
+references:
+  - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1070.004/T1070.004.md
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  selection:
+    comm:
+      - 'php'
+    ppid_argv:
+      - '*/bin/sh*.php'
+  condition: selection
+falsepositives:
+  - Legitimate administration activities
+level: informational
+tags:
+  - attack.initial_access

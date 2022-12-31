@@ -1,0 +1,26 @@
+title: Creation Of An User Account
+status: experimental
+description: Detects the creation of a new user account. Such accounts may be used for persistence that do not require persistent remote access tools to be deployed on the system.
+author: Marie Euler
+date: 2020/05/18
+references:
+  - 'MITRE Attack technique T1136; Create Account '
+logsource:
+  product: linux
+detection:
+  selection1:
+    comm:
+      - 'useradd*'
+  selection2:
+    data_type:
+      - '82'
+    new_name:
+      - '/var/lib/docker/volumes*/etc/group'
+      - '/var/lib/docker/volumes*/etc/shadow'
+      - '/var/lib/docker/volumes*/etc/passwd'
+  condition: selection1  or selection2
+falsepositives:
+  - Admin activity
+level: medium
+tags:
+  - attack.persistence
